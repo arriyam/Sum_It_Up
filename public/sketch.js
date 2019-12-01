@@ -13,7 +13,7 @@ var answered = false;
 function setup() {
   createCanvas(600, 600)
   background(0, 100, 200);
-  socket = io.connect('http://localhost:3000/') //https://bibleanalysis.herokuapp.com/
+  socket = io.connect('https://bibleanalysis.herokuapp.com/') //
   socket.on('newConnection', connection); //Listens for newConnection event
   socket.on('startGame', replyConnection); //Listens for startGame event (after connection sent back to server)
   input = createInput();
