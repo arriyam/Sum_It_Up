@@ -1,8 +1,9 @@
+console.log('test')
 const express = require('express'); //requires express module
 const socket = require('socket.io'); //requires socket.io module
 const app = express();
 var PORT = process.env.PORT || 3000;
-const server = app.listen(3000); //tells to host server on localhost:3000
+const server = app.listen(PORT); //tells to host server on localhost:3000
 var connectState = false;
 const coLimit = 2;
 var clientID = []
