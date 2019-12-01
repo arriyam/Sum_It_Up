@@ -1,4 +1,3 @@
-console.log('test')
 const express = require('express'); //requires express module
 const socket = require('socket.io'); //requires socket.io module
 const app = express();
@@ -22,7 +21,7 @@ var results = {
 }
 
 
-app.use(express.static('../public')); //show static files in 'public' directory
+app.use(express.static('public')); //show static files in 'public' directory
 console.log('Server is running');
 const io = socket(server);
 
