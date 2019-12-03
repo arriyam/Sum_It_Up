@@ -1,3 +1,4 @@
+//Server back-end variables:
 const express = require('express'); //requires express module
 const socket = require('socket.io'); //requires socket.io module
 const app = express();
@@ -15,10 +16,18 @@ var already = false;
 var submitted = false
 var player1IN;
 var player2IN;
+var player1OUT;
+var player2OUT;
 var results = {
 	player1: undefined,
 	player2: undefined
 }
+var passageMemory = [];
+var firstSelect=true;
+
+//score system variables:
+var points1 = 0
+var points2 = 0
 
 
 app.use(express.static('public')); //show static files in 'public' directory
@@ -51,14 +60,23 @@ io.on('connection', (socket) => {
 		socket.on('comfirmCo', (connectionStatus) => {
 			let connectionStatusComfirm = connectionStatus; //sets value to another variable
 			socket.broadcast.emit('startGame', connectionStatusComfirm); //sends back the cofirmation
-
 		})
 
-		socket.on('chosePassage', () => {
+		socket.on('chosePassage', () => { //randomly choses a passage for players and memorizes which of the previous ones were used
 			if(!already) {
+			//console.log("___________________")
 				passageChosed = getRandomInt(10)
+				while (passageMemory.includes(passageChosed) == true){
+				passageChosed = getRandomInt(10)
+				console.log(passageChosed)
+				//console.log("memory: " + passageMemory)
+				//firstSelect=false;
+				}
+				passageMemory.push(passageChosed)
 				already = true;
+				
 			}
+		
 			socket.emit('passageChosen', passageChosed)
 		})
 
@@ -71,20 +89,39 @@ io.on('connection', (socket) => {
 			player1IN = answer;
 			submitted = true;
 			}
-			console.log("1: " + player1IN)
-			console.log("2: " + player2IN)
+			//console.log("1: " + player1IN)
+			//console.log("2: " + player2IN)
 			//--------------
 			//call function to judge and give percentage
-			
-			player1OUT = 63;
-			player2OUT = 78;
-			results = {
-				player1: player1OUT,
-				player2: player2OUT
+
+			if (player1IN != undefined && player2IN != undefined) {
+			player1OUT = player1IN.length;
+			player2OUT = player2IN.length;
+			// console.log(player1OUT)
+			// console.log(player2OUT)
+	
+			if (player1OUT > player2OUT) {
+				//console.log("1 point")
+				points1++;
+			} else if (player2OUT > player1OUT) {
+				//console.log("2 point")
+				points2++;
+			} else if (player1OUT == player2OUT) {
+				points1++;
+				points2++;
+			}
+			//checkWinner();
+			scores = {
+				player1: points1,
+				player2: points2
 			
 			}
-			socket.emit('results', results)
 	
+			console.log()
+			io.emit('results', scores)
+		//	console.log('emmited')
+
+			}
 		}) 
 
 	}
@@ -98,3 +135,16 @@ function getRandomInt(max) {
 	return Math.floor(Math.random() * Math.floor(max));
   }
   
+function checkWinner(player1OUT, player2OUT) {
+	if (player1OUT > player2OUT) {
+		console.log("1 point")
+		points1++;
+	} else if (player2OUT > player1OUT) {
+		console.log("2 point")
+		points2++;
+	} else if (player1OUT == player2OUT) {
+		points1++;
+		points2++;
+	}
+
+}
