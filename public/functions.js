@@ -1,14 +1,9 @@
-//import { rejects } from "assert";
-
-// function message() {
-//     var data = {
-//         pls: input.value()
-//       }
-//       socket.emit('mouse', data)
-//       input.hide()
-    
-// }
 function connection(connectState) {
+  mainScores = {
+    player1:0,
+    player2:0
+  }
+  endGame=false;
   connectionStatus = connectState;
   socket.emit('comfirmCo', connectionStatus)
 }
@@ -72,9 +67,11 @@ function play(countDown) {
    if (countDown > timeAnswer) {
     background(255, 0, 0)
     text("Time Up!", 200, 200)
-    socket.emit('answerIN', "")
+    answer = input.value()
+    socket.emit('answerIN', answer)
     input.hide()
     button.hide()
+    answered = true;
     }
   }
 }
@@ -82,11 +79,13 @@ function play(countDown) {
 function results(scores) {
   console.log('test')
   scoringScrn = true;
+  if (!received) {
   mainScores = {
     player1: scores.player1,
     player2: scores.player2
   }
-
+  received = true;
+  }
 
 }
 
@@ -109,6 +108,14 @@ function scoringScreen() {
     selectedPassage=false;
     countDown=0;
     timer=0;
+    received = false;
   }
   
+}
+
+function gameOver() {
+  background(100, 0, 100)
+  text('End Game', 200, 200)
+  text(mainScores.player1, 250, 250)
+  text(mainScores.player2, 250, 300)
 }

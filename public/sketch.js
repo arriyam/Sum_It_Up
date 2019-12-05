@@ -9,7 +9,7 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT = 'https://bibleanalysis.herokuapp.com/' //'http://localhost:3000/' ||
+var connectionPORT = 'http://localhost:3000/' //|| 'https://bibleanalysis.herokuapp.com/' 
 var scoringScrn = false;
 var mainScores = {
   player1: 0,
@@ -18,6 +18,7 @@ var mainScores = {
 var scoreTimer = 0;
 var rounds = false;
 var endGame = false;
+var received = false;
 function setup() {  
   createCanvas(600, 600)
   background(0, 100, 200);
@@ -33,8 +34,7 @@ function setup() {
 
 function draw() {
   if (endGame==true) {
-    background(100, 0, 100)
-    text('End Game', 200, 200)
+    gameOver();
   } else {
   //console.log(connecting)
   if (rounds==false) {

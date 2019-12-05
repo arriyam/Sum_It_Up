@@ -28,7 +28,7 @@ var firstSelect=true;
 //score system variables:
 var points1 = 0
 var points2 = 0
-
+var emmited = false;
 
 app.use(express.static('public')); //show static files in 'public' directory
 console.log('Server is running');
@@ -50,8 +50,16 @@ io.on('connection', (socket) => {
 		console.log('New connection: ' + socket.id);
 		clientID.push(socket.id) //Adds socket ID to clientID array
 		console.log('Number of connections: ' + io.engine.clientsCount);
-		console.log(connectState)
+		//console.log(connectState)
 		socket.broadcast.emit('newConnection', connectState);
+		scores = {
+			player1: 0,
+			player2: 0
+		}
+		player1IN = undefined;
+		player2IN = undefined;
+		submitted = false;
+
 		if (clientID.length > coLimit) {
 			plays = 0;
             clientID.shift();
@@ -75,6 +83,15 @@ io.on('connection', (socket) => {
 				// }
 				// passageMemory.push(passageChosed)
 				already = true;
+				scores = {
+					player1: 0,
+					player2: 0
+				}
+				player1IN = undefined;
+				player2IN = undefined;
+				submitted = false
+				emmited = false;
+				submitted = false;
 				
 			}
 		
@@ -83,6 +100,9 @@ io.on('connection', (socket) => {
 
 
 		socket.on('answerIN', (answer) => {
+			console.log("1: " + player1IN)
+			console.log("2: " + player2IN)
+			emmited = false
 			if (submitted) {
 				player2IN = answer;
 			}
@@ -94,8 +114,9 @@ io.on('connection', (socket) => {
 			//console.log("2: " + player2IN)
 			//--------------
 			//call function to judge and give percentage
-
 			if (player1IN != undefined && player2IN != undefined) {
+			console.log(player1IN)
+			console.log(player2IN)
 			player1OUT = player1IN.length;
 			player2OUT = player2IN.length;
 			// console.log(player1OUT)
@@ -119,16 +140,17 @@ io.on('connection', (socket) => {
 			}
 			console.log(scores)	
 			console.log()
+			if (!emmited) {
 			io.emit('results', scores)
 			console.log('emmited')
-			scores = {
-				player1: 0,
-				player2: 0
+			emmited = true;
 			}
-			player1IN = undefined
-			player2IN = undefined
-			submitted = false
+			
 			already=false;
+			player1IN=undefined;
+			player2IN=undefined;
+			
+
 			}
 		}) 
 
