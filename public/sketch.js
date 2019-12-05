@@ -4,7 +4,7 @@ var socket;
 var countDown = 0;
 var timer = 0;
 var biblePassages = ["1", "2", "3", "4", "5", "6", "7", "8"]
-var timeAnswer = 3200;
+var timeAnswer = 500;
 var selectedPassage = false;
 var passage;
 var selected = false;
@@ -17,7 +17,7 @@ var mainScores = {
 }
 var scoreTimer = 0;
 var rounds = false;
-
+var endGame = false;
 function setup() {  
   createCanvas(600, 600)
   background(0, 100, 200);
@@ -32,27 +32,52 @@ function setup() {
 }
 
 function draw() {
-
-  //console.log(connecting)
-  if (connectionStatus == false && connectionStatus2 == false) { 
-      waitingConnection()
-  
+  if (endGame==true) {
+    background(100, 0, 100)
+    text('End Game', 200, 200)
   } else {
-    if (selectedPassage == false){
-      selectingPassage(biblePassages);
-    } else if (selectedPassage == true) {
-      //socket.on('results', results)
+  //console.log(connecting)
+  if (rounds==false) {
+    if (scoringScrn) {
+      scoringScreen();
+    } else {
+    if (connectionStatus == false && connectionStatus2 == false) { 
+        waitingConnection()
+    
+    } else {
+      if (selectedPassage == false){
+        selectingPassage(biblePassages);
+        console.log('selec')
+        //selectedPassage=true;
+      } else if (selectedPassage == true) {
+        //socket.on('results', results)
+          console.log('playing')
+          play(countDown);
+        if (scoringScrn) {
+          console.log('z')
+          scoringScreen();
+        }
+      }
+      
+    }
+
+  }
+} else if (rounds==true) {
+  //console.log('rounds')
+  //selectedPassage=false;
+  if (selectedPassage==false) {
+    selectingPassage(biblePassages);
+   } else if (selectedPassage==true){
+      socket.on('results', results)
       play(countDown);
       if (scoringScrn) {
         scoringScreen();
       }
-     
-    }
-    countDown++
     }
 
-  timer ++
-
-
+   }
+  
+timer ++
+countDown++
 }
-
+}

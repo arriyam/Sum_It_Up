@@ -63,16 +63,17 @@ io.on('connection', (socket) => {
 		})
 
 		socket.on('chosePassage', () => { //randomly choses a passage for players and memorizes which of the previous ones were used
+			
 			if(!already) {
 			//console.log("___________________")
-				passageChosed = getRandomInt(10)
-				while (passageMemory.includes(passageChosed) == true){
-				passageChosed = getRandomInt(10)
-				console.log(passageChosed)
-				//console.log("memory: " + passageMemory)
-				//firstSelect=false;
-				}
-				passageMemory.push(passageChosed)
+			passageChosed = getRandomInt(10)
+				// while (passageMemory.includes(passageChosed) == true){
+				// passageChosed = getRandomInt(10)
+				// console.log(passageChosed)
+				// //console.log("memory: " + passageMemory)
+				// //firstSelect=false;
+				// }
+				// passageMemory.push(passageChosed)
 				already = true;
 				
 			}
@@ -116,18 +117,23 @@ io.on('connection', (socket) => {
 				player2: points2
 			
 			}
-	
+			console.log(scores)	
 			console.log()
 			io.emit('results', scores)
-		//	console.log('emmited')
-
+			console.log('emmited')
+			scores = {
+				player1: 0,
+				player2: 0
+			}
+			player1IN = undefined
+			player2IN = undefined
+			submitted = false
+			already=false;
 			}
 		}) 
 
 	}
 		
-	
-
 })
 
 

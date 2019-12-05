@@ -30,21 +30,25 @@ function waitingConnection() {
 
 function selectingPassage(biblePassages){
   background(0, 0, 255);
+  answered = false;
+  scoringScrn=false;
   textSize(50)
   text("Selecting passage:", 200, 200)
   socket.emit("chosePassage")
   socket.on("passageChosen", (passageChosed) => {
     passage = passageChosed;
   })
+  console.log(timer )
   text(passage, 200, 400)
-  if (timer > 20) {
+  if (timer > 100) {
    //console.log(timer)
-    selectedPassage = true;
+   selectedPassage = true;
   }
 }
 
 
 function play(countDown) {
+  console.log('play')
    socket.on('results', results)
    background(255, 0, 0)
    text("Playing:", 200, 200)
@@ -68,6 +72,7 @@ function play(countDown) {
    if (countDown > timeAnswer) {
     background(255, 0, 0)
     text("Time Up!", 200, 200)
+    socket.emit('answerIN', "")
     input.hide()
     button.hide()
     }
@@ -75,6 +80,7 @@ function play(countDown) {
 }
 
 function results(scores) {
+  console.log('test')
   scoringScrn = true;
   mainScores = {
     player1: scores.player1,
@@ -86,12 +92,23 @@ function results(scores) {
 
 function scoringScreen() {
   background(100, 100, 0)
-  rounds = true;
+  //rounds = true;
   text(mainScores.player1, 250, 250)
   text(mainScores.player2, 250, 300)
   scoreTimer++;
+  //rounds=true;
+  selectedPassage=false;
   if (scoreTimer>200) {
-    scoringScrn = false;
+    if (rounds) {
+     endGame=true;
+   }
+    input.hide()
+    button.hide()
+    scoringScrn=false;
+    rounds=true;
+    selectedPassage=false;
+    countDown=0;
+    timer=0;
   }
   
 }
