@@ -4,12 +4,12 @@ var socket;
 var countDown = 0;
 var timer = 0;
 var biblePassages = ["1", "2", "3", "4", "5", "6", "7", "8"]
-var timeAnswer = 500;
+var timeAnswer = 1000;
 var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT = 'https://bibleanalysis.herokuapp.com/' //'http://localhost:3000/' //|| 
+var connectionPORT = 'https://bibleanalysis.herokuapp.com/' //'http://localhost:3000/'
 var scoringScrn = false;
 var mainScores = {
   player1: 0,

@@ -33,7 +33,7 @@ function selectingPassage(biblePassages){
   socket.on("passageChosen", (passageChosed) => {
     passage = passageChosed;
   })
-  console.log(timer )
+  //console.log(timer)
   text(passage, 200, 400)
   if (timer > 100) {
    //console.log(timer)
@@ -48,7 +48,8 @@ function play(countDown) {
    background(255, 0, 0)
    text("Playing:", 200, 200)
    text(passage, 400, 200)
-   text((countDown.toString()+ " / " + timeAnswer.toString()) , 200, 300)
+   countDownDisplay = Math.round(countDown/60)
+   text(countDownDisplay.toString() + " / " + timeAnswer.toString() , 200, 300)
    input.show()
    button.show()
    button.mousePressed(()=> {
