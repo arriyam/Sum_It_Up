@@ -131,8 +131,9 @@ function scoringScreen() {
   //rounds = true;
   text(("player 1: " + mainScores.player1), 250, 250)
   text(("player 2: " + mainScores.player2), 250, 300)
-  text((": % " + mainScores.player1percent), 500, 250)
-  text((": % " + mainScores.player2percent), 500, 300)
+  textSize(30)
+  text((mainScores.player1percent + " %"), 500, 250)
+  text((mainScores.player2percent+ " %"), 500, 300)
   scoreTimer++;
   //rounds=true;
   
