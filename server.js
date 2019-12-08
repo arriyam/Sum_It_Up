@@ -174,11 +174,11 @@ io.on('connection', (socket) => {
 			})
 			PythonShell.run('algorithm.py', null, function (err) {
 				//if (err) throw err;
-				console.log('finished');
+				console.log('running python');
 			  });	 
 			var stallingServer = true;
 			io.emit('loading', stallingServer)
-			setTimeout(resultScores, 20000)
+			setTimeout(resultScores, 25000)
 
 			
 					function resultScores() {

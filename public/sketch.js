@@ -11,7 +11,7 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT ='https://bibleanalysis.herokuapp.com/' ////'http://localhost:3000/' //
+var connectionPORT ='https://bibleanalysis.herokuapp.com/' //'http://localhost:3000/' //
 var scoringScrn = false;
 var mainScores = {
   player1:0,
@@ -52,6 +52,7 @@ function setup() {
 
 function draw() {
   load();
+  console.log(loadingS)
   if (!loadingS) {
     loadingGIF.hide()
   //console.log(loadingS)
@@ -140,8 +141,7 @@ function draw() {
       socket.on('results', results)
       play(countDown);
       if (scoringScrn) {
-        sc
-        oringScreen();
+        scoringScreen();
       }
     }
 
@@ -154,8 +154,10 @@ countDown--
     background(255)
     //image(loadingGIF, 200, 400);
     text("Waiting for Results!", 300, 300)
+    text("This should take about 20 seconds!", 300, 300)
     //image(loadingGIFimport, 50, 50);
     loadingGIF.position(xScreen/2, yScreen/2+50);
+
     //loadingGIF.resize(50, 50);
     // updates animation frames by using an html
     // img element, positioning it over top of
