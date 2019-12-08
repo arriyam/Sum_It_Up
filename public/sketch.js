@@ -154,7 +154,7 @@ countDown--
     background(255)
     //image(loadingGIF, 200, 400);
     text("Waiting for Results!", 300, 300)
-    text("This should take about 20 seconds!", 300, 300)
+    text("This should take about 20 seconds!", 300, 350)
     //image(loadingGIFimport, 50, 50);
     loadingGIF.position(xScreen/2, yScreen/2+50);
 
