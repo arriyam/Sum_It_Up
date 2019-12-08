@@ -1,3 +1,4 @@
+'''
 import spacy
 
 #small English dictionary
@@ -80,6 +81,13 @@ percentage=str(percentage)
 percentage2=str(percentage2)
 
 
+output.close()
+output1.close()
+output2.close()
+'''
+percentage=10
+percentage2=54
+
 #percentage file sending
 response1 = open("response1.txt","w")
 response1.write(percentage)
@@ -89,7 +97,3 @@ response2 = open("response2.txt","w")
 response2.write(percentage2)
 response2.close()
 
-
-output.close()
-output1.close()
-output2.close()
