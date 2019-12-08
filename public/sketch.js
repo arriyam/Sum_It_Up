@@ -11,7 +11,7 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT = 'http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/' //
+var connectionPORT ='https://bibleanalysis.herokuapp.com/' ////'http://localhost:3000/' //
 var scoringScrn = false;
 var mainScores = {
   player1:0,
