@@ -11,7 +11,7 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT = 'http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/'
+var connectionPORT = 'https://bibleanalysis.herokuapp.com/'//'http://localhost:3000/' //
 var scoringScrn = false;
 var mainScores = {
   player1:0,
@@ -45,16 +45,21 @@ function setup() {
   button.hide()
   waitingPlayerIMG = loadImage('images/Waiting.png');
   playingIMG = loadImage('images/playing.png')
-  loadingGIFimport = loadImage('images/loading.gif')
-  loadingGIF = createImg('images/loading.gif')
-
+  waitOtherPlay = loadImage('images/waitingresponse.png')
+  resultsImg = loadImage('images/results.png')
+  selectingPasImg = loadImage('images/selecting.png')
+ // loadingGIFimport = loadImage('images/loading.gif')
+  //loadingGIF = createImg('images/loading.gif')
+  clientAlreadyAssigned=false;
+  player = ""
 }
 
 function draw() {
   load();
-  console.log(loadingS)
+ // selectingPassage()
+ // console.log(loadingS)
   if (!loadingS) {
-    loadingGIF.hide()
+    //loadingGIF.hide()
   //console.log(loadingS)
   //intro=true;
   //console.log(activePlayer)
@@ -86,18 +91,8 @@ function draw() {
       if (!intro) {
         introTimer++;
         background(100, 100, 150)
-        clientAlreadyAssigned = false;
-        if (!clientAlreadyAssigned) {
-          console.log('in')
-          socket.emit('requestAssign', "")
-          socket.on('clientAnswer', (clientAns) => {
-            console.log('in socket')
-            ///activePlayer=clientAns
-            //console.log(activePlayer)
-        //clientAlreadyAssigned = clientAns
-          })
-          clientAlreadyAssigned = true;
-        }
+        //clientAlreadyAssigned = false;
+        
         
        // text("Starting")
         //socket.on('playerState', (playerState) => {
@@ -108,8 +103,23 @@ function draw() {
        textSize(30)
         text('GET READY!!', 200, 200)
         text('GAME STARTING SOON', 200, 400)
-        if (introTimer > 200) {
+        // if (!clientAlreadyAssigned) {
+        //   //console.log('in socket')
+        //  //socket.emit('requestAssign', "")
+        //   socket.on('assignPlayer', (player) => {
+        //     console.log('in socket')
+        //     activePlayer=player;
+        //     console.log(activePlayer)
+
+        //     //console.log(activePlayer)
+        //     clientAlreadyAssigned = true;
+        //   })
+        //   //clientAlreadyAssigned = true; 
+        // }
+        //text("You are: " + activePlayer, 200, 200)
+        if (introTimer > 500) {
           intro=true;
+ 
         } 
       } else {
       if (selectedPassage == false){
@@ -156,7 +166,7 @@ countDown--
     text("Waiting for Results!", 200, 300)
     text("This should take about 20 seconds!", 100, 350)
     //image(loadingGIFimport, 50, 50);
-    loadingGIF.position(xScreen/2, yScreen/2+50);
+   // loadingGIF.position(xScreen/2, yScreen/2+50);
 
     //loadingGIF.resize(50, 50);
     // updates animation frames by using an html

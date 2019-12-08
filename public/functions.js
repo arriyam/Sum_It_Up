@@ -35,12 +35,29 @@ function connection(connectState) {
 
 function replyConnection(connectionStatusComfirm) {
   connectionStatus2 = connectionStatusComfirm;
+  socket.on('assignPlayer', (player)=>{
+    if (!clientAlreadyAssigned) {
+    activePlayer=player;
+    clientAlreadyAssigned=true;
+    }
+  })
   //console.log(connectionStatus2)
 }
 
 function waitingConnection() {
+  console.log('waiting')
   waitingPlayerIMG.resize(xScreen, yScreen)
   image(waitingPlayerIMG, 0, 0);
+  if (!clientAlreadyAssigned){
+    console.log('request')
+  socket.emit('requestAssign', "")
+  socket.on('assignPlayer', (player)=>{
+    activePlayer=player
+    
+  })
+  clientAlreadyAssigned=true;
+}
+  console.log(activePlayer)
   // Displays the image at point (0, height/2) at half size
  //image(waitingPlayerIMG, 0, height / 2, waitingPlayerIMG.width / 2, waitingPlayerIMG.height / 2);
   //background(0, 100, 0);
@@ -52,8 +69,10 @@ function waitingConnection() {
 
 //Display Functions:
 function selectingPassage(biblePassages){
-  background(0, 0, 255);
-  text("Round: " + roundNum, 200, 100)
+  selectingPasImg.resize(xScreen, yScreen)
+  image(selectingPasImg, 0, 0)
+  textSize(50)
+  text("Round: " + roundNum, 240, 550)
   answered = false;
   scoringScrn=false;
   textSize(30)
@@ -63,8 +82,8 @@ function selectingPassage(biblePassages){
     passage = passageChosed;
   })
   //console.log(timer)
-  text(biblePassages[passage], 200, 400)
-  if (timer > 300) {
+  text(biblePassages[passage], 180, 350)
+  if (timer > 500) {
    //console.log(timer)
    selectedPassage = true;
   }
@@ -93,8 +112,10 @@ function play(countDown) {
    if (answered == true) {
      button.hide()
      input.hide()
-     background(100, 100, 100)
-     text("Waiting other player", 200, 200)
+     waitOtherPlay.resize(xScreen, yScreen)
+     image(waitOtherPlay, 0, 0)
+     //background(100, 100, 100)
+     //text("Waiting other player", 200, 200)
    } else {
 
    if (countDown < 0) {
@@ -126,18 +147,21 @@ function results(scores) {
 }
 
 function scoringScreen() {
-  background(100, 100, 0)
-  console.log('scoring scren')
+  resultsImg.resize(xScreen, yScreen)
+  image(resultsImg, 0, 0)
+  //background(100, 100, 0)
+  //console.log('scoring scren')
   //rounds = true;
-  text(("player 1: " + mainScores.player1), 250, 250)
-  text(("player 2: " + mainScores.player2), 250, 300)
-  textSize(30)
-  text((mainScores.player1percent + " %"), 500, 250)
-  text((mainScores.player2percent+ " %"), 500, 300)
+  textSize(40)
+  text(mainScores.player1, 220, 450)
+  text((mainScores.player2), 570, 450)
+  textSize(40)
+  text((mainScores.player1percent + " %"), 45, 450)
+  text((mainScores.player2percent+ " %"), 390, 450)
   scoreTimer++;
   //rounds=true;
   
-  if (scoreTimer>200) {
+  if (scoreTimer>500) {
     if (rounds) {
       button.hide()
       if (roundNum>=3) {

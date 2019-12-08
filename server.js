@@ -50,9 +50,28 @@ const io = socket(server);
 //     content = data;
 // });
 // console.log(content);
-
+var player = "Player 1"
+var assigned1 = false;
 //P5-------------------------------------
 io.on('connection', (socket) => {
+	player = "Player 1"
+	assigned1 = false;
+	//player = "Player 1"
+	//io.emit('assignPlayer', player)
+	//player = "Player 2"
+	
+	socket.on('requestAssign', ()=>{
+		if (assigned1 == false) {
+		player = "Player 1"
+		assigned1 = true;
+		io.emit('assignPlayer', player)
+		} else {
+			player = "Player 2"
+			//console.log('player 2')
+			io.emit('assignPlayer', player)	
+		}
+	})
+
 	// console.log("new Con: " + socket.id)
 	//Waits for a new connection
 	if (io.engine.clientsCount > coLimit) { //checks if there are more then 2 client connections
@@ -82,6 +101,8 @@ io.on('connection', (socket) => {
             clientID.shift();
 		}
 	
+		player = "Player 2"
+		io.emit('assignPlayer', player)
 		socket.on('requestAssign',()=>{
 			
 			if (first){
@@ -97,11 +118,12 @@ io.on('connection', (socket) => {
 		socket.on('comfirmCo', (connectionStatus) => {
 			let connectionStatusComfirm = connectionStatus; //sets value to another variable
 			socket.broadcast.emit('startGame', connectionStatusComfirm); //sends back the cofirmation
-			var playerState = "player 2"
+			player = "Player 2"
+			io.emit('assignPlayer', player)
 			//io.emit('playerState', playerState);
 			//playerState = "player 2"
 			//console.log("test: " + clientID[1])
-			io.to(clientID[1]).emit('playerState', playerState);
+			//io.to(clientID[1]).emit('playerState', playerState);
 		})
 
 		socket.on('chosePassage', () => { //randomly choses a passage for players and memorizes which of the previous ones were used
@@ -129,7 +151,7 @@ io.on('connection', (socket) => {
 				submitted = false;
 				
 			}
-		
+			io.emit('assignPlayer', player)
 			socket.emit('passageChosen', passageChosed)
 		})
 
@@ -182,7 +204,7 @@ io.on('connection', (socket) => {
 			//  });	 
 			var stallingServer = true;
 			io.emit('loading', stallingServer)
-			setTimeout(resultScores, 10000)
+			setTimeout(resultScores, 5000)
 
 			
 					function resultScores() {
