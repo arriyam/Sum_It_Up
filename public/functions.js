@@ -23,7 +23,9 @@ function load() {
 function connection(connectState) {
   mainScores = {
     player1:0,
-    player2:0
+    player2:0,
+    player1percent:0,
+    player2percent:0 
   }
   endGame=false;
   connectionStatus = connectState;
@@ -49,12 +51,12 @@ function waitingConnection() {
 
 
 //Display Functions:
-
 function selectingPassage(biblePassages){
   background(0, 0, 255);
+  text("Round: " + roundNum, 200, 100)
   answered = false;
   scoringScrn=false;
-  textSize(50)
+  textSize(30)
   text("Selecting passage:", 200, 200)
   socket.emit("chosePassage")
   socket.on("passageChosen", (passageChosed) => {
@@ -75,7 +77,7 @@ function play(countDown) {
    image(playingIMG, 0, 0)
    socket.on('results', results)
   // background(255, 0, 0)
-   //text("Playing:", 200, 200)
+   //text("Playinug:", 200, 200)
    textSize(35)
    text(biblePassages[passage], 150, 200)
    countDownDisplay = Math.round(countDown/60)
@@ -108,12 +110,15 @@ function play(countDown) {
 }
 
 function results(scores) {
-  console.log('test')
+// console.log('test')
   scoringScrn = true;
   if (!received) {
   mainScores = {
     player1: scores.player1,
-    player2: scores.player2
+    player2: scores.player2,
+    player1percent: scores.player1percent,
+    player2percent: scores.player2percent
+    
   }
   received = true;
   }
@@ -122,26 +127,42 @@ function results(scores) {
 
 function scoringScreen() {
   background(100, 100, 0)
+  console.log('scoring scren')
   //rounds = true;
   text(("player 1: " + mainScores.player1), 250, 250)
   text(("player 2: " + mainScores.player2), 250, 300)
+  text((": % " + mainScores.player1percent), 500, 250)
+  text((": % " + mainScores.player2percent), 500, 300)
   scoreTimer++;
   //rounds=true;
-  selectedPassage=false;
+  
   if (scoreTimer>200) {
     if (rounds) {
-     endGame=tr
-     
-     ue;
+      button.hide()
+      if (roundNum>=3) {
+        endGame=true;
+
+
+      }
+      scoringScrn=false;
+      rounds=true;
+      selectedPassage=false;
+      countDown=timeAnswer;
+      timer=0;
+      received = false;
+      scoreTimer=0;
+      increment=false;
    }
-    input.hide()
     button.hide()
     scoringScrn=false;
     rounds=true;
     selectedPassage=false;
+    scoreTimer=0;
     countDown=timeAnswer;
     timer=0;
-    received = false;
+    received = false;  
+    input.hide()
+  
   }
   
 }
@@ -149,6 +170,22 @@ function scoringScreen() {
 function gameOver() {
   background(100, 0, 100)
   text('End Game', 200, 200)
-  text(mainScores.player1, 250, 250)
-  text(mainScores.player2, 250, 300)
+  var winner = checkWinner(mainScores.player1, mainScores.player2)
+  text("player 1 score Final: " + mainScores.player1, 250, 250)
+  text("player 2 score Final: " + mainScores.player2, 250, 300)
+  text(winner, 250, 350)
+  text("Thanks for playing!", 250, 400)
+
+  endGame = true;
+}
+
+function checkWinner(player1OUT, player2OUT) {
+	if (player1OUT > player2OUT) {
+    return "Player 1 WINS!"
+	} else if (player2OUT > player1OUT) {
+		return "Player 2 WINS!"
+	} else if (player1OUT == player2OUT) {
+		return "Tie!"
+	}
+
 }

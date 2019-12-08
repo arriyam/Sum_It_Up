@@ -3,7 +3,7 @@ var yScreen = 600
 var connectionStatus = false;
 var connectionStatus2 = false;
 var socket;
-var timeAnswer = 1000;
+var timeAnswer = 10000;
 var countDown = timeAnswer;
 var timer = 0;
 var biblePassages = ["Feeding the Five Thousand", "Wedding at Cana", "The Lost Sheep", "4", "5", "6", "7", "8"]
@@ -11,11 +11,13 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT = 'https://bibleanalysis.herokuapp.com/' //'http://localhost:3000/'
+var connectionPORT = 'http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/' //
 var scoringScrn = false;
 var mainScores = {
-  player1: 0,
-  player2: 0
+  player1:0,
+  player2:0,
+  player1percent:0,
+  player2percent:0 
 }
 var scoreTimer = 0;
 var rounds = false;
@@ -28,6 +30,8 @@ var activePlayer=undefined;
 var clientAlreadyAssigned = false;
 var loading;
 var loadingS=false;
+var roundNum=1;
+var increment=false;
 
 function setup() {  
   createCanvas(xScreen, yScreen)
@@ -127,12 +131,17 @@ function draw() {
   //console.log('rounds')
   //selectedPassage=false;
   if (selectedPassage==false) {
+    if (!increment) {
+      roundNum++
+      increment=true;
+    }
     selectingPassage(biblePassages);
    } else if (selectedPassage==true){
       socket.on('results', results)
       play(countDown);
       if (scoringScrn) {
-        scoringScreen();
+        sc
+        oringScreen();
       }
     }
 

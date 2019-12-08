@@ -204,8 +204,9 @@ io.on('connection', (socket) => {
 					//checkWinner();
 					scores = {
 						player1: points1,
-						player2: points2
-					
+						player2: points2,
+						player1percent: player1OUT,
+						player2percent: player2OUT
 					}
 					//console.log(scores)	
 					//console.log()
