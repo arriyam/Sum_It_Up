@@ -11,7 +11,6 @@ output2 = open('output2.txt', "r")
 player2 =output2.readline()
 
 
-#a='3'
 
 if a=='0': ###Feeding the Five Thousand
     doc0 = '''   Now when Jesus heard this, he withdrew from there in a boat to a deserted place by himself. 
@@ -45,7 +44,8 @@ if a=='1': ###The Wedding at Cana
     keywords = ["3", "wedding", "cana", "Galilee", "there", "jesus", "wine", "water", "mircale", "fill"]
 
 if a=='2': ### Lost Shee
-    doc0 = '''Now all the tax collectors and sinners were coming near to listen to him.
+    doc0 = '''
+        Now all the tax collectors and sinners were coming near to listen to him.
                And the Pharisees and the scribes were grumbling and saying, 
               “This fellow welcomes sinners and eats with them."So he told them this parable: 
                “Which one of you, having a hundred sheep and losing one of them,
@@ -54,9 +54,9 @@ if a=='2': ### Lost Shee
               comes home, he calls together his friends and neighbors, saying to them, ‘Rejoice with me, for I have found my
                sheep that was lost.’ Just so, I tell you, there will be more joy in heaven over one sinner who repents than 
                over ninety-nine righteous persons who need no repentance.'''
-'''
     keywords = ["parable", "lost", "sheep", "sribes", "sinners", "99", "found"]
 
+'''
 if a=='3': ### Resurection of Jesus
     doc0 ='But on the first day of the week, at early dawn, they came to the tomb, taking the spices that they had prepared.'
               ' They found the stone rolled away from the tomb,  but when they went in, they did not find the body.'
@@ -70,11 +70,35 @@ if a=='3': ### Resurection of Jesus
               'stooping and looking in, he saw the linen cloths by themselves; then he went home, amazed at what had happened.'
 '''
 
-def scores(passage, keywords, answer):
-    inPas = list(map(str, passage.split()))
-    answer
-    return inPas
+def scores(keywords, answer):
+    scoreFunc = 0
+    inPas = list(map(str, answer.split()))
+    #print(keywords)
+    #print(inPas)
+    for i in inPas:
+        for y in keywords:
+            if i == y:
+                scoreFunc+=1
+
+    percent = round(scoreFunc/len(keywords)*100)
+    return str(percent)
     
+
+percentPlayer1 = scores(keywords, player1)
+percentPlayer2 = scores(keywords, player2)
+
+#print(percentPlayer1)
+#print(percentPlayer2)
+
+
+response1 = open("response1.txt","w")
+response1.write(percentPlayer1)
+response1.close()
+
+response2 = open("response2.txt","w")
+response2.write(percentPlayer2)
+response2.close()
+
 
 # percentage=scores(doc0, player1)
 # percentage2=scores(doc0, player1)
@@ -82,8 +106,6 @@ def scores(passage, keywords, answer):
 # print(percentage,percentage2)
 
 
-# percentage=str(percentage)
-# percentage2=str(percentage2)
 
 # print(percentage)
 # print(percentage2)
@@ -93,10 +115,3 @@ def scores(passage, keywords, answer):
 # # output2.close()
 
 # #percentage file sending
-# response1 = open("response1.txt","w")
-# response1.write(percentage)
-# # response1.close()
-
-# response2 = open("response2.txt","w")
-# response2.write(percentage2)
-# # response2.close()
