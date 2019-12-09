@@ -211,8 +211,8 @@ io.on('connection', (socket) => {
 					//console.log('te')
 					stallingServer = false;
 					io.emit('loading', stallingServer)
-					var player1OUT = getRandomInt(99)//fs.readFileSync('response1.txt','utf8')
-					var player2OUT = getRandomInt(99)//fs.readFileSync('response2.txt','utf8')
+					var player1OUT = fs.readFileSync('response1.txt','utf8')//getRandomInt(99)//
+					var player2OUT = fs.readFileSync('response2.txt','utf8')//getRandomInt(99)//
 			
 					console.log(player1OUT)
 					console.log(player2OUT)
