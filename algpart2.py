@@ -76,27 +76,27 @@ def scores(passage, keywords, answer):
     return inPas
     
 
-percentage=scores(doc0, player1)
-percentage2=scores(doc0, player1)
+# percentage=scores(doc0, player1)
+# percentage2=scores(doc0, player1)
 
 # print(percentage,percentage2)
 
 
-percentage=str(percentage)
-percentage2=str(percentage2)
+# percentage=str(percentage)
+# percentage2=str(percentage2)
 
-print(percentage)
-print(percentage2)
+# print(percentage)
+# print(percentage2)
 
-# output.close()
-# output1.close()
-# output2.close()
+# # output.close()
+# # output1.close()
+# # output2.close()
 
-#percentage file sending
-response1 = open("response1.txt","w")
-response1.write(percentage)
-# response1.close()
+# #percentage file sending
+# response1 = open("response1.txt","w")
+# response1.write(percentage)
+# # response1.close()
 
-response2 = open("response2.txt","w")
-response2.write(percentage2)
-# response2.close()
+# response2 = open("response2.txt","w")
+# response2.write(percentage2)
+# # response2.close()

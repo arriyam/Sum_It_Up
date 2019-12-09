@@ -132,7 +132,7 @@ io.on('connection', (socket) => {
 			//console.log("___________________")
 			passageChosed = getRandomInt(2)
 			console.log(passageChosed)
-				// while (passageMemory.includes(passageChosed) == true){
+				// while (passageMemory.includes	(passageChosed) == true){
 				// passageChosed = getRandomInt(10)
 				// console.log(passageChosed)
 				// //console.log("memory: " + passageMemory)
@@ -194,25 +194,25 @@ io.on('connection', (socket) => {
 			})
 			fs.writeFileSync('output2.txt', data.player2IN, (err) => { //contains input for player 2 
 			})
-			// PythonShell.run('algorithm.py', null, function (err) {
-			// 	if (err) throw err;
-			// 	console.log('running python');
-			// 	var player1OUT = fs.readFileSync('response1.txt','utf8')
-			// 	var player2OUT = fs.readFileSync('response2.txt','utf8')
-			// 	console.log('player 1: ' + player1OUT)
-			// 	console.log('player 2: ' + player2OUT)
-			//  });	 
+			PythonShell.run('algorithm.py', null, function (err) {
+				if (err) throw err;
+				console.log('running python');
+				var player1OUT = fs.readFileSync('response1.txt','utf8')
+				var player2OUT = fs.readFileSync('response2.txt','utf8')
+				console.log('player 1: ' + player1OUT)
+				console.log('player 2: ' + player2OUT)
+			 });	 
 			var stallingServer = true;
 			io.emit('loading', stallingServer)
-			setTimeout(resultScores, 5000)
+			setTimeout(resultScores, 20000)
 
 			
 					function resultScores() {
 					//console.log('te')
 					stallingServer = false;
 					io.emit('loading', stallingServer)
-					var player1OUT = getRandomInt(99)//fs.readFileSync('response1.txt','utf8')//
-					var player2OUT = getRandomInt(99)//fs.readFileSync('response2.txt','utf8')//
+					var player1OUT = 85//fs.readFileSync('response1.txt','utf8')//getRandomInt(99)//
+					var player2OUT = 11//fs.readFileSync('response2.txt','utf8')//getRandomInt(99)//
 			
 					console.log(player1OUT)
 					console.log(player2OUT)

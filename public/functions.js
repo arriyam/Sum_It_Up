@@ -76,14 +76,14 @@ function selectingPassage(biblePassages){
   answered = false;
   scoringScrn=false;
   textSize(30)
-  text("Selecting passage:", 200, 200)
+ // text("Selecting passage:", 200, 200)
   socket.emit("chosePassage")
   socket.on("passageChosen", (passageChosed) => {
     passage = passageChosed;
   })
   //console.log(timer)
   text(biblePassages[passage], 180, 350)
-  if (timer > 500) {
+  if (timer > 300) {
    //console.log(timer)
    selectedPassage = true;
   }

@@ -22,7 +22,7 @@ player2 =nlp(output2.readline())
 #a='3'
 
 if a=='0': ###Feeding the Five Thousand
-    doc0 =nlp(' Now when Jesus heard this, he withdrew from there in a boat to a deserted place by himself. '
+    doc0 = nlp(' Now when Jesus heard this, he withdrew from there in a boat to a deserted place by himself. '
               'But when the crowds heard it, they followed him on foot from the towns.  When he went ashore, '
               'he saw a great crowd; and he had compassion for them and cured their sick. When it was evening, '
               'the disciples came to him and said, “This is a deserted place, and the hour is now late; '
