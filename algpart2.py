@@ -13,7 +13,7 @@ player2 =output2.readline()
 
 
 if a=='0': ###Feeding the Five Thousand
-    doc0 = '''   Now when Jesus heard this, he withdrew from there in a boat to a deserted place by himself. 
+    summary = '''   Now when Jesus heard this, he withdrew from there in a boat to a deserted place by himself. 
               But when the crowds heard it, they followed him on foot from the towns.  When he went ashore, 
               he saw a great crowd; and he had compassion for them and cured their sick. When it was evening, 
               the disciples came to him and said, “This is a deserted place, and the hour is now late; 
@@ -24,11 +24,17 @@ if a=='0': ###Feeding the Five Thousand
               looked up to heaven, and blessed and broke the loaves, and gave them to the disciples, and the 
               disciples gave them to the crowds. And all ate and were filled; and they took up what was left
               over of the broken pieces, twelve baskets full. And those who ate were about five thousand men,
-              besides women and children.'''
-    keywords = ["feed", "food", "jesus", "twevle", "baskets", "crowd", "fish", "loaves", "filled", "disciple"]
+              besides women and children.Taking the five loaves and the two fishes and looking up to Heaven, he gave thanks and broke them. Then he gave them to the disciples, and the disciples gave them to the people. They all ate and were satisfied, and the disciples picked up twelve baskets full of broken pieces that were left over.'''
+    keywords = list(map(str, summary.split()))#["feed", "food", "jesus", "twevle", "baskets", "crowd", "fish", "loaves", "filled", "disciple"]
 
 if a=='1': ###The Wedding at Cana
-    doc0 ='''On the third day there was a wedding in Cana of Galilee, and the mother of Jesus was there.
+    summary = '''The transformation of water into wine at the Marriage at Cana
+    or Wedding at Cana is the first miracle attributed to Jesus in the Gospel
+    of John.[1] In the Gospel, Jesus, his mother and his disciples are
+    invited to a wedding, and when the wine runs out, Jesus delivers a sign of
+    his glory by turning water into wine.The location of Cana has been subject
+    to the debate of Christ among biblical scholars and archeologists; multiple
+    villages in Galilee are possible candidates. On the third day there was a wedding in Cana of Galilee, and the mother of Jesus was there.
                 Jesus and his disciples had also been invited to the wedding.  When the wine gave out,
                the mother of Jesus said to him, “They have no wine.”  And Jesus said to her, “Woman, what
                concern is that to you and to me? My hour has not yet come.” His mother said to the servants,
@@ -41,10 +47,10 @@ if a=='1': ###The Wedding at Cana
               But you have kept the good wine until now.” Jesus did this, the first of his signs, in Cana of Galilee, and
                revealed his glory; and his disciples believed in him.After this he went down to Capernaum with his mother, his brothers,
               and his disciples; and they remained there a few days.'''
-    keywords = ["3", "wedding", "cana", "Galilee", "there", "jesus", "wine", "water", "mircale", "fill"]
+    keywords = list(map(str, summary.split()))#["3", "wedding", "cana", "Galilee", "there", "jesus", "wine", "water", "mircale", "fill"]
 
 if a=='2': ### Lost Shee
-    doc0 = '''
+    summary = '''
         Now all the tax collectors and sinners were coming near to listen to him.
                And the Pharisees and the scribes were grumbling and saying, 
               “This fellow welcomes sinners and eats with them."So he told them this parable: 
@@ -54,7 +60,7 @@ if a=='2': ### Lost Shee
               comes home, he calls together his friends and neighbors, saying to them, ‘Rejoice with me, for I have found my
                sheep that was lost.’ Just so, I tell you, there will be more joy in heaven over one sinner who repents than 
                over ninety-nine righteous persons who need no repentance.'''
-    keywords = ["parable", "lost", "sheep", "sribes", "sinners", "99", "found"]
+    keywords = list(map(str, summary.split()))#["parable", "lost", "sheep", "sribes", "sinners", "99", "found"]
 
 '''
 if a=='3': ### Resurection of Jesus
@@ -72,15 +78,18 @@ if a=='3': ### Resurection of Jesus
 
 def scores(keywords, answer):
     scoreFunc = 0
+    already = []
     inPas = list(map(str, answer.split()))
     #print(keywords)
     #print(inPas)
     for i in inPas:
         for y in keywords:
-            if i == y:
+            if i == y and y!=already:
                 scoreFunc+=1
 
     percent = round(scoreFunc/len(keywords)*100)
+    if percent >= 100:
+        percent = 99
     return str(percent)
     
 

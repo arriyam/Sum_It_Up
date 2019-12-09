@@ -215,7 +215,7 @@ io.on('connection', (socket) => {
 					var player2OUT = fs.readFileSync('response2.txt','utf8')
 			
 					console.log(player1OUT)
-					console.log(player2OUT)
+						console.log(player2OUT)
 			
 					if (player1OUT > player2OUT) {
 						//console.log("1 point")
