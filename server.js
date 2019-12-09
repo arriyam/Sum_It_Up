@@ -204,7 +204,7 @@ io.on('connection', (socket) => {
 			//  });	 
 			var stallingServer = true;
 			io.emit('loading', stallingServer)
-			setTimeout(resultScores, 20000)
+			setTimeout(resultScores, 2000)
 
 			
 					function resultScores() {
