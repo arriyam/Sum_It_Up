@@ -6,7 +6,7 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-en-core-web-lg = "*"
+spacy = "*"
 
 [requires]
 python_version = "3.7"
