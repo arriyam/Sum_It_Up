@@ -194,17 +194,17 @@ io.on('connection', (socket) => {
 			})
 			fs.writeFileSync('output2.txt', data.player2IN, (err) => { //contains input for player 2 
 			})
-			PythonShell.run('algorithm.py', null, function (err) {
-				if (err) throw err;
-				console.log('running python');
-				var player1OUT = fs.readFileSync('response1.txt','utf8')
-				var player2OUT = fs.readFileSync('response2.txt','utf8')
-				console.log('player 1: ' + player1OUT)
-				console.log('player 2: ' + player2OUT)
-			 });	 
-			var stallingServer = true;
-			io.emit('loading', stallingServer)
-			setTimeout(resultScores, 20000)
+			// PythonShell.run('algorithm.py', null, function (err) {
+			// 	if (err) throw err;
+			// 	console.log('running python');
+			// 	var player1OUT = fs.readFileSync('response1.txt','utf8')
+			// 	var player2OUT = fs.readFileSync('response2.txt','utf8')
+			// 	console.log('player 1: ' + player1OUT)
+			// 	console.log('player 2: ' + player2OUT)
+			//  });	 
+			// var stallingServer = true;
+			// io.emit('loading', stallingServer)
+			// setTimeout(resultScores, 2000)
 
 			
 					function resultScores() {
