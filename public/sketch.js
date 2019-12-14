@@ -11,7 +11,7 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT = 'http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/'//
+var connectionPORT = 'https://bibleanalysis.herokuapp.com/'//'http://localhost:3000/' //
 var scoringScrn = false;
 var mainScores = {
   player1:0,
@@ -43,6 +43,7 @@ function setup() {
   button = createButton('submit');
   input.hide()  
   button.hide()
+  loadingG = createImg("images/loadingG.gif")
   waitingPlayerIMG = loadImage('images/Waiting.png');
   playingIMG = loadImage('images/playing.png')
   waitOtherPlay = loadImage('images/waitingresponse.png')
@@ -52,17 +53,19 @@ function setup() {
   gameOverP2Img = loadImage('images/GameOverP2.png')
   loadingResults = loadImage('images/LoadingResults.png')
   getReadyImg = loadImage('images/GetReady.png')
+
+
   // loadingGIFimport = loadImage('images/loading.gif')
   //loadingGIF = createImg('images/loading.gif')
   clientAlreadyAssigned=false;
   player = ""
+
 }
 
 function draw() {
+  loadingG.hide()
   //endGame = true
   load();
- // selectingPassage()
- // console.log(loadingS)
   if (!loadingS) {
     //loadingGIF.hide()
   //console.log(loadingS)
@@ -168,17 +171,11 @@ timer ++
 countDown--
 }
   } else {
-    background(255)
-    //image(loadingGIF, 200, 400);
-    text("Waiting for Results!", 200, 300)
-    text("This should take about 20 seconds!", 100, 350)
-    //image(loadingGIFimport, 50, 50);
-   // loadingGIF.position(xScreen/2, yScreen/2+50);
-
-    //loadingGIF.resize(50, 50);
-    // updates animation frames by using an html
-    // img element, positioning it over top of
-    // the canvas.
+   // background(255)
+    loadingG.show()
+    loadingG.position(290, 250)
+    loadingResults.resize(xScreen, yScreen)
+    image(loadingResults, 0, 0)
     
   }
 }

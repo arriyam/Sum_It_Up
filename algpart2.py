@@ -10,7 +10,7 @@ player1 =output1.readline()
 output2 = open('output2.txt', "r")
 player2 =output2.readline()
 
-#keywords = [""]
+keywords = [""]
 
 if a=='0': ###Feeding the Five Thousand
     summary = '''   Now when Jesus heard this, he withdrew from there in a boat to a deserted place by himself. 
