@@ -10,7 +10,7 @@ player1 =output1.readline()
 output2 = open('output2.txt', "r")
 player2 =output2.readline()
 
-
+#keywords = [""]
 
 if a=='0': ###Feeding the Five Thousand
     summary = '''   Now when Jesus heard this, he withdrew from there in a boat to a deserted place by himself. 
@@ -49,7 +49,7 @@ if a=='1': ###The Wedding at Cana
               and his disciples; and they remained there a few days.'''
     keywords = list(map(str, summary.split()))#["3", "wedding", "cana", "Galilee", "there", "jesus", "wine", "water", "mircale", "fill"]
 
-if a=='2': ### Lost Shee
+if a=='2': ### Lost Sheep
     summary = '''
         Now all the tax collectors and sinners were coming near to listen to him.
                And the Pharisees and the scribes were grumbling and saying, 
@@ -86,11 +86,16 @@ def scores(keywords, answer):
         for y in keywords:
             if i == y and y!=already:
                 scoreFunc+=1
+    percent = (scoreFunc/len(keywords))*100
+    #print(percent)
+    percent *= 2.75
+    #print(percent)
+    #percent = round(percent*100)
+    #print(percent)
 
-    percent = round(scoreFunc/len(keywords)*100)
     if percent >= 100:
         percent = 99
-    return str(percent)
+    return str(round(percent))
     
 
 percentPlayer1 = scores(keywords, player1)

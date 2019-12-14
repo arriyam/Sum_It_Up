@@ -189,7 +189,8 @@ io.on('connection', (socket) => {
 			fs.createWriteStream('response2.txt')
 
 			fs.writeFileSync('output.txt', data.passage, (err) => { //contains passage ref.	
-			 })
+			console.log(data.passage)
+			})
 			fs.writeFileSync('output1.txt', data.player1IN, (err) => { //contains input for player 1	
 			})
 			fs.writeFileSync('output2.txt', data.player2IN, (err) => { //contains input for player 2 

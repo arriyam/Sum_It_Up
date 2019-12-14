@@ -11,7 +11,7 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT ='https://bibleanalysis.herokuapp.com/'//  'http://localhost:3000/' //
+var connectionPORT = 'http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/'//
 var scoringScrn = false;
 var mainScores = {
   player1:0,
@@ -48,13 +48,18 @@ function setup() {
   waitOtherPlay = loadImage('images/waitingresponse.png')
   resultsImg = loadImage('images/results.png')
   selectingPasImg = loadImage('images/selecting.png')
- // loadingGIFimport = loadImage('images/loading.gif')
+  gameOverP1Img = loadImage('images/GameOverP1.png')
+  gameOverP2Img = loadImage('images/GameOverP2.png')
+  loadingResults = loadImage('images/LoadingResults.png')
+  getReadyImg = loadImage('images/GetReady.png')
+  // loadingGIFimport = loadImage('images/loading.gif')
   //loadingGIF = createImg('images/loading.gif')
   clientAlreadyAssigned=false;
   player = ""
 }
 
 function draw() {
+  //endGame = true
   load();
  // selectingPassage()
  // console.log(loadingS)
@@ -64,7 +69,7 @@ function draw() {
   //intro=true;
   //console.log(activePlayer)
   //assignPlayers()
-  if (endGame==true) {
+  if (endGame==true) {  
     gameOver();
   } else {
   //console.log(connecting)
@@ -90,7 +95,9 @@ function draw() {
     } else {
       if (!intro) {
         introTimer++;
-        background(100, 100, 150)
+        getReadyImg.resize(xScreen, yScreen)
+        image(getReadyImg, 0, 0)
+       // background(100, 100, 150)
         //clientAlreadyAssigned = false;
         
         
@@ -100,9 +107,9 @@ function draw() {
           //console. og('in playestate: ' + playerState)
           //text(("You are: " + playerState), 200, 300)
        // })
-       textSize(30)
-        text('GET READY!!', 200, 200)
-        text('GAME STARTING SOON', 200, 400)
+      //  textSize(30)
+      //   text('GET READY!!', 200, 200)
+      //   text('GAME STARTING SOON', 200, 400)
         // if (!clientAlreadyAssigned) {
         //   //console.log('in socket')
         //  //socket.emit('requestAssign', "")
@@ -124,7 +131,6 @@ function draw() {
       } else {
       if (selectedPassage == false){
         selectingPassage(biblePassages);
-        console.log('selec')
         //selectedPassage=true;1
       } else if (selectedPassage == true) {
         //socket.on('results', results)
@@ -139,7 +145,8 @@ function draw() {
   }
   }
 } else if (rounds==true) {
-  //console.log('rounds')
+  //
+  ('rounds')
   //selectedPassage=false;
   if (selectedPassage==false) {
     if (!increment) {

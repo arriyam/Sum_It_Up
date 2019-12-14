@@ -45,7 +45,6 @@ function replyConnection(connectionStatusComfirm) {
 }
 
 function waitingConnection() {
-  console.log('waiting')
   waitingPlayerIMG.resize(xScreen, yScreen)
   image(waitingPlayerIMG, 0, 0);
   if (!clientAlreadyAssigned){
@@ -69,6 +68,7 @@ function waitingConnection() {
 
 //Display Functions:
 function selectingPassage(biblePassages){
+  input.value("")
   selectingPasImg.resize(xScreen, yScreen)
   image(selectingPasImg, 0, 0)
   textSize(50)
@@ -92,6 +92,7 @@ function selectingPassage(biblePassages){
 
 function play(countDown) {
  // console.log('play')
+   //input.empty()
    playingIMG.resize(xScreen, yScreen)
    image(playingIMG, 0, 0)
    socket.on('results', results)
@@ -194,12 +195,16 @@ function scoringScreen() {
 
 function gameOver() {
   background(100, 0, 100)
-  text('End Game', 200, 200)
-  var winner = checkWinner(mainScores.player1, mainScores.player2)
-  text("player 1 score Final: " + mainScores.player1, 250, 250)
-  text("player 2 score Final: " + mainScores.player2, 250, 300)
-  text(winner, 250, 350)
-  text("Thanks for playing!", 250, 400)
+  if (mainScores.player1 > mainScores.player2) {
+    gameOverP1Img.resize(xScreen, yScreen)
+    image(gameOverP1Img, 0, 0)
+  } else if (mainScores.player1 < mainScores.player2) {
+    gameOverP2Img.resize(xScreen, yScreen)
+    image(gameOverP2Img, 0, 0)
+  } else if (mainScores.player1 === mainScores.player2) {
+    text('TIE!', 250, 250)
+  }
+
 
   endGame = true;
 }
