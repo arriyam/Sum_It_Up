@@ -125,13 +125,21 @@ io.on('connection', (socket) => {
 			//console.log("test: " + clientID[1])
 			//io.to(clientID[1]).emit('playerState', playerState);
 		})
-
+			var alreadyChosed = []
 		socket.on('chosePassage', () => { //randomly choses a passage for players and memorizes which of the previous ones were used
 			
 			if(!already) {
 			//console.log("___________________")
-			passageChosed = getRandomInt(2)
-			console.log(passageChosed)
+			while (find) {
+			passageChosed = getRandomInt(2);
+			alreadyChosed.push(passageChosed);
+			if (alreadyChosed.includes(passageChosed)) {
+				find = true;
+			} else {
+				find = false;
+			}
+		}
+			//console.log(passageChosed)
 				// while (passageMemory.includes	(passageChosed) == true){
 				// passageChosed = getRandomInt(10)
 				// console.log(passageChosed)

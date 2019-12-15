@@ -64,7 +64,6 @@ function setup() {
 
 function draw() {
   loadingG.hide()
-  //endGame = true
   load();
   if (!loadingS) {
     //loadingGIF.hide()
@@ -126,8 +125,8 @@ function draw() {
         //   })
         //   //clientAlreadyAssigned = true; 
         // }
-        //text("You are: " + activePlayer, 200, 200)
-        if (introTimer > 350) {
+        //text("You are: " +  activePlayer, 200, 200)
+        if (introTimer > 250) {
           intro=true;
  
         } 

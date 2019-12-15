@@ -91,13 +91,31 @@ function selectingPassage(biblePassages){
 
 
 function play(countDown) {
- // console.log('play')
-   //input.empty()
+  // input.style('position', 'relative')
+  // input.position(width, height)
+  // button.position(width/2, height+50)
+   input.style('position', 'absolute')
+   input.style('top', '85%')
+   input.style('border', 'none')
+   input.style('display', 'inline-block')
+   input.style('border-radius', '10px')
+   input.style('line-height', '4')
+   input.style('fontSize', '18px')
+   input.style('min-width', '40%')
+   button.style('position', 'absolute')
+   button.style('top', '86%')
+   button.style('left', '75%')
+   button.style('color', '#fff !important')
+   button.style('background-color', '#60a3bc')
+   button.style('text-transform', 'uppercase')
+   button.style('transition', 'all 0.4s ease 0s;')
+   button.style('padding', '20px')
+   button.style('border-radius', '50px')
+   button.style('border', 'none')
+   button.style('display', 'inline-block')
    playingIMG.resize(xScreen, yScreen)
    image(playingIMG, 0, 0)
    socket.on('results', results)
-  // background(255, 0, 0)
-   //text("Playinug:", 200, 200)
    textSize(35)
    text(biblePassages[passage], 150, 200)
    countDownDisplay = Math.round(countDown/60)
@@ -195,13 +213,21 @@ function scoringScreen() {
 
 function gameOver() {
   background(100, 0, 100)
+  textSize(40)
+  textStyle(BOLD);
   if (mainScores.player1 > mainScores.player2) {
     gameOverP1Img.resize(xScreen, yScreen)
     image(gameOverP1Img, 0, 0)
+    text(mainScores.player1, 120, 390)
+    text(mainScores.player2, 560, 390)
   } else if (mainScores.player1 < mainScores.player2) {
     gameOverP2Img.resize(xScreen, yScreen)
     image(gameOverP2Img, 0, 0)
+    text(mainScores.player1, 120, 390)
+    text(mainScores.player2, 560, 390)
   } else if (mainScores.player1 === mainScores.player2) {
+    text(mainScores.player1, 120, 390)
+    text(mainScores.player2, 560, 390)
     text('TIE!', 250, 250)
   }
 
