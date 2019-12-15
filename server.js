@@ -34,13 +34,12 @@ var emmited = false;
 var clientAns;
 var first = true;
 var processTime = 0;
+var alreadyChosed = []
+var find = true;
 
 app.use(express.static('public')); //show static files in 'public' directory
 console.log('Server is running');
 const io = socket(server);
-
-
-
 
 // var content;
 // fs.readFile('response1.txt', function read(err, data) {
@@ -54,6 +53,7 @@ var player = "Player 1"
 var assigned1 = false;
 //P5-------------------------------------
 io.on('connection', (socket) => {
+	alreadyChosed=[]
 	player = "Player 1"
 	assigned1 = false;
 	//player = "Player 1"
@@ -125,18 +125,20 @@ io.on('connection', (socket) => {
 			//console.log("test: " + clientID[1])
 			//io.to(clientID[1]).emit('playerState', playerState);
 		})
-			var alreadyChosed = []
+			
 		socket.on('chosePassage', () => { //randomly choses a passage for players and memorizes which of the previous ones were used
 			
 			if(!already) {
 			//console.log("___________________")
 			while (find) {
-			passageChosed = getRandomInt(2);
-			alreadyChosed.push(passageChosed);
+			console.log(alreadyChosed)
+			passageChosed = getRandomInt(3);
+			console.log('if' + alreadyChosed.includes(passageChosed))
 			if (alreadyChosed.includes(passageChosed)) {
 				find = true;
 			} else {
-				find = false;
+				alreadyChosed.push(passageChosed);
+				find=false;
 			}
 		}
 			//console.log(passageChosed)
@@ -222,7 +224,7 @@ io.on('connection', (socket) => {
 					io.emit('loading', stallingServer)
 					var player1OUT = fs.readFileSync('response1.txt','utf8')
 					var player2OUT = fs.readFileSync('response2.txt','utf8')
-			
+					
 					console.log(player1OUT)
 						console.log(player2OUT)
 			
@@ -249,6 +251,7 @@ io.on('connection', (socket) => {
 					io.emit('results', scores)
 					//console.log('emmited')
 					emmited = true;
+					find = true;	
 					}
 					
 					already=false;
