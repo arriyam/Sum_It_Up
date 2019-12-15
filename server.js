@@ -53,6 +53,10 @@ var player = "Player 1"
 var assigned1 = false;
 //P5-------------------------------------
 io.on('connection', (socket) => {
+	scores = {
+		player1: 0,
+		player2: 0
+	}	
 	alreadyChosed=[]
 	player = "Player 1"
 	assigned1 = false;
