@@ -65,6 +65,10 @@ io.on('connection', (socket) => {
 	//player = "Player 2"
 	
 	socket.on('requestAssign', ()=>{
+		scores = {
+			player1: 0,
+			player2: 0
+		}
 		if (assigned1 == false) {
 		player = "Player 1"
 		assigned1 = true;
@@ -108,7 +112,10 @@ io.on('connection', (socket) => {
 		player = "Player 2"
 		io.emit('assignPlayer', player)
 		socket.on('requestAssign',()=>{
-			
+			scores = {
+				player1: 0,
+				player2: 0
+			}
 			if (first){
 				clientAns = "Player 1"
 				first = false;
@@ -120,10 +127,16 @@ io.on('connection', (socket) => {
 			//console.log('requestAssign: ' + clientAns)
 		})
 		socket.on('comfirmCo', (connectionStatus) => {
+			scores = {
+				player1: 0,
+				player2: 0
+			}
 			let connectionStatusComfirm = connectionStatus; //sets value to another variable
 			socket.broadcast.emit('startGame', connectionStatusComfirm); //sends back the cofirmation
 			player = "Player 2"
 			io.emit('assignPlayer', player)
+			points1 = 0
+			points2 = 0
 			//io.emit('playerState', playerState);
 			//playerState = "player 2"
 			//console.log("test: " + clientID[1])
@@ -131,7 +144,10 @@ io.on('connection', (socket) => {
 		})
 			
 		socket.on('chosePassage', () => { //randomly choses a passage for players and memorizes which of the previous ones were used
-			
+			scores = {
+				player1: 0,
+				player2: 0
+			}
 			if(!already) {
 			//console.log("___________________")
 			while (find) {

@@ -11,7 +11,7 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT = 'https://bibleanalysis.herokuapp.com/'//'http://localhost:3000/' //
+var connectionPORT = 'http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/'//
 var scoringScrn = false;
 var mainScores = {
   player1:0,
@@ -20,7 +20,7 @@ var mainScores = {
   player2percent:0 
 }
 var scoreTimer = 0;
-var rounds = false;
+var rounds = false
 var endGame = false;
 var received = false;
 var introTimer=0;
@@ -51,8 +51,10 @@ function setup() {
   selectingPasImg = loadImage('images/selecting.png')
   gameOverP1Img = loadImage('images/GameOverP1.png')
   gameOverP2Img = loadImage('images/GameOverP2.png')
+  gameOverTieImg = loadImage('images/GameOverTie.png')
   loadingResults = loadImage('images/LoadingResults.png')
   getReadyImg = loadImage('images/GetReady.png')
+
 
 
   // loadingGIFimport = loadImage('images/loading.gif')

@@ -226,9 +226,11 @@ function gameOver() {
     text(mainScores.player1, 120, 390)
     text(mainScores.player2, 560, 390)
   } else if (mainScores.player1 === mainScores.player2) {
+    gameOverTieImg.resize(xScreen,yScreen)
+    image(gameOverTieImg,0,0)
     text(mainScores.player1, 120, 390)
     text(mainScores.player2, 560, 390)
-    text('TIE!', 250, 250)
+   // text('TIE!', 250, 250)
   }
 
 
