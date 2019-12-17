@@ -6,7 +6,7 @@ var socket;
 var timeAnswer = 3700;
 var countDown = timeAnswer;
 var timer = 0;
-var biblePassages = ["Feeding the Five Thousand", "Wedding at Cana", "The Lost Sheep", "Resuretion of Jesus", "Noah's Arc", "Crucifixion/Death of Jesus", "Jonah Run's Away from God", "Six Days of Creation", "Jesus Walks on Water", "Jesus Heals the Blind"]
+var biblePassages = ["Feeding the Five Thousand", "Wedding at Cana", "The Lost Sheep", "Resurrection of Jesus", "Noah's Ark", "Crucifixion/Death of Jesus", "Jonah Runs Away from God", "Six Days of Creation", "Jesus Walks on Water", "Jesus Heals the Blind"]
 var selectedPassage = false;
 var passage;
 var selected = false;
