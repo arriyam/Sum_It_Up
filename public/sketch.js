@@ -11,7 +11,7 @@ var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT ='https://bibleanalysis.herokuapp.com/'// 'http://localhost:3000/' //
+var connectionPORT ='http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/'// 
 var scoringScrn = false;
 var mainScores = {
   player1:0,
@@ -43,6 +43,8 @@ function setup() {
   button = createButton('submit');
   input.hide()  
   button.hide()
+
+  //Image loading
   loadingG = createImg("images/loadingG.gif")
   waitingPlayerIMG = loadImage('images/Waiting.png');
   playingIMG = loadImage('images/playing.png')
@@ -56,10 +58,6 @@ function setup() {
   getReadyImg = loadImage('images/GetReady.png')
   a = createA('index.html', 'Back to Main Menu');
   a.hide()
-
-
-  // loadingGIFimport = loadImage('images/loading.gif')
-  //loadingGIF = createImg('images/loading.gif')
   clientAlreadyAssigned=false;
   player = ""
 
@@ -69,83 +67,33 @@ runReq = true;
 
 function draw() {
   if (!alreadyAssigned) {
-  console.log('why are u running?')
   alreadyAssigned=true;
   socket.emit('requestAssign')
-  
   socket.on('clientAnswer', (clientAns) => {
     if (runReq) {
     runReq = false 
     activePlayer = clientAns; 
     }
   })
-
 }
   loadingG.hide()
   load();
   if (!loadingS) {
-    //loadingGIF.hide()
-  //console.log(loadingS)
-  //intro=true;
-  //console.log(activePlayer)
-  //assignPlayers()
   if (endGame==true) {  
     gameOver();
   } else {
-  //console.log(connecting)
   if (rounds==false) {
     if (scoringScrn) {
       scoringScreen();
     } else {
-    if (connectionStatus == false && connectionStatus2 == false) { 
-       //play();
+    if (connectionStatus == false && connectionStatus2 == false) { //makes sure 2 clients are connected
        waitingConnection()
-      //  if (!clientAlreadyAssigned) {
-      //   //console.log('in')
-      //   socket.emit('requestAssign', "")
-      //   socket.on('clientAnswer', (clientAns) => {
-      //    //console.log('in socket')
-      //     // activePlayer=clientAns
-      //     // console.log()
-      // //clientAlreadyAssigned = clientAns
-      //   })
-      //   clientAlreadyAssigned = true;
-      //}
-    
     } else {
       if (!intro) {
         introTimer++;
         getReadyImg.resize(xScreen, yScreen)
         image(getReadyImg, 0, 0)
         textSize(30)
-        //text(("You are " + activePlayer), 200, 400)
-       // background(100, 100, 150)
-        //clientAlreadyAssigned = false;
-        
-        
-       // text("Starting")
-        //socket.on('playerState', (playerState) => {
-          //console.log("plyaer: " + playerState)
-          //console. og('in playestate: ' + playerState)
-          //text(("You are: " + playerState), 200, 300)
-       // })
-      //  textSize(30)
-      //   text('GET READY!!', 200, 200)
-      //   text('GAME STARTING SOON', 200, 400)
-        // if (!clientAlreadyAssigned) {
-        //   //console.log('in socket')
-        //  //socket.emit('requestAssign', "")
-        //   socket.on('assignPlayer', (player) => {
-        //     console.log('in socket')
-        //     activePlayer=player;
-        //     console.log(activePlayer)
-
-        //     //console.log(activePlayer)
-        //     clientAlreadyAssigned = true;
-        //   })
-        //   //clientAlreadyAssigned = true; 
-        // }
-        //text("You are: " +  activePlayer, 200, 200)
         if (introTimer > 250) {
           intro=true;
  
@@ -153,10 +101,8 @@ function draw() {
       } else {
       if (selectedPassage == false){
         selectingPassage(biblePassages);
-        //selectedPassage=true;1
+
       } else if (selectedPassage == true) {
-        //socket.on('results', results)
-         // console.log('playing')
           play(countDown);
         if (scoringScrn) {
           scoringScreen();
@@ -166,11 +112,9 @@ function draw() {
     }
   }
   }
-} else if (rounds==true) {
-  //
+} else if (rounds==true) { //multiple rounds
   ('rounds')
-  //selectedPassage=false;
-  if (selectedPassage==false) {
+  if (selectedPassage==false) { //selects passage
     if (!increment) {
       roundNum++
       increment=true;
@@ -183,18 +127,14 @@ function draw() {
         scoringScreen();
       }
     }
-
    }
-  
 timer ++
 countDown--
 }
   } else {
-   // background(255)
     loadingG.show()
     loadingG.position(605, 250)
     loadingResults.resize(xScreen, yScreen)
-    image(loadingResults, 0, 0)
-    
+    image(loadingResults, 0, 0)  
   }
 }

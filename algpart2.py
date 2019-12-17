@@ -6,10 +6,11 @@ a=(output.readline())
 
 output1 = open('output1.txt', "r")
 player1 =output1.readline()
-
+player1.lower()
 
 output2 = open('output2.txt', "r")
-player2 =output2.readline()
+player2 = output2.readline()
+player1.lower()
 
 keywords = [""]
 
@@ -26,6 +27,7 @@ if a=='0': ###Feeding the Five Thousand
               disciples gave them to the crowds. And all ate and were filled; and they took up what was left
               over of the broken pieces, twelve baskets full. And those who ate were about five thousand men,
               besides women and children.Taking the five loaves and the two fishes and looking up to Heaven, he gave thanks and broke them. Then he gave them to the disciples, and the disciples gave them to the people. They all ate and were satisfied, and the disciples picked up twelve baskets full of broken pieces that were left over.'''
+    summary.lower()
     keywords = list(map(str, summary.split()))#["feed", "food", "jesus", "twevle", "baskets", "crowd", "fish", "loaves", "filled", "disciple"]
 
 if a=='1': ###The Wedding at Cana
@@ -48,6 +50,7 @@ if a=='1': ###The Wedding at Cana
               But you have kept the good wine until now.” Jesus did this, the first of his signs, in Cana of Galilee, and
                revealed his glory; and his disciples believed in him.After this he went down to Capernaum with his mother, his brothers,
               and his disciples; and they remained there a few days.'''
+    summary.lower()
     keywords = list(map(str, summary.split()))#["3", "wedding", "cana", "Galilee", "there", "jesus", "wine", "water", "mircale", "fill"]
 
 if a=='2': ### Lost Sheep
@@ -61,6 +64,7 @@ if a=='2': ### Lost Sheep
               comes home, he calls together his friends and neighbors, saying to them, ‘Rejoice with me, for I have found my
                sheep that was lost.’ Just so, I tell you, there will be more joy in heaven over one sinner who repents than 
                over ninety-nine righteous persons who need no repentance.'''
+    summary.lower()
     keywords = list(map(str, summary.split()))#["parable", "lost", "sheep", "sribes", "sinners", "99", "found"]
 if a=='3': ### Resurection of Jesus
     summary = '''But on the first day of the week, at early dawn, they came to the tomb, taking the spices that they had prepared.
@@ -73,6 +77,8 @@ if a=='3': ### Resurection of Jesus
                Now it was Mary Magdalene, Joanna, Mary the mother of James, and the other women with them who told this to the apostles.
                But these words seemed to them an idle tale, and they did not believe them. But Peter got up and ran to the tomb; 
               stooping and looking in, he saw the linen cloths by themselves; then he went home, amazed at what had happened.'''
+    summary.lower()
+    keywords = list(map(str, summary.split()))
 
 if a=='4': ### Noah's Arc
     summary = '''Noah was a righteous man and walked with God. Seeing that the earth was corrupt and filled with violence,
@@ -105,7 +111,8 @@ if a=='4': ### Noah's Arc
             everything on dry land in whose nostrils was the breath of life died.  He blotted out every living thing that was on 
            the face of the ground, human beings and animals and creeping things and birds of the air; they were blotted out from 
            the earth. Only Noah was left, and those that were with him in the ark.  And the waters swelled on the earth for one hundred
-           fifty days.'''
+           fifty days. noah's arc'''
+    summary.lower()
     keywords = list(map(str, summary.split()))
 
 if a=='5': ### Crucifixion and death of Jesus
@@ -134,6 +141,7 @@ if a=='5': ### Crucifixion and death of Jesus
            and said, “Truly this man was God’s Son!” Many women were also there, looking on from a distance; they had
             followed Jesus from Galilee and had provided for him. Among them were Mary Magdalene, and Mary the mother of
             James and Joseph, and the mother of the sons of Zebedee'''
+    summary.lower()
     keywords = list(map(str, summary.split()))
 if a=='6': ### Jonah Tries to Run Away from God
     summary =''' Now the word of the Lord came to Jonah son of Amittai, saying, “Go at once to Nineveh, that great city,
@@ -159,6 +167,7 @@ if a=='6': ### Jonah Tries to Run Away from God
            threw him into the sea; and the sea ceased from its raging. 16 Then the men feared the Lord even more, and they offered
            a sacrifice to the Lord and made vows. But the Lord provided a large fish to swallow up Jonah; and Jonah was in 
            the belly of the fish three days and three nights.'''
+    summary.lower()
     keywords = list(map(str, summary.split()))
 if a=='6': ### Adam and Eve
     summary = '''After creating the world, God made a beautiful garden, called Garden of Eden. It was a paradise
@@ -205,6 +214,7 @@ if a=='6': ### Adam and Eve
                therefore the Lord God sent him forth from the garden of Eden, to till the ground from which he was taken. He
                drove out the man; and at the east of the garden of Eden he placed the cherubim, and a sword flaming and turning to 
               guard the way to the tree of life.'''
+    summary.lower()
     keywords = list(map(str, summary.split()))
 
 if a=='7':### Six Days of Creation and the Sabbath
@@ -243,6 +253,7 @@ if a=='7':### Six Days of Creation and the Sabbath
              beast of the earth, and to every bird of the air, and to everything that creeps on the earth, everything that has the 
              breath of life, I have given every green plant for food.” And it was so. God saw everything that he had made, and 
              indeed, it was very good. And there was evening and there was morning, the sixth day.'''
+    summary.lower()
     keywords = list(map(str, summary.split()))
 
 if a=='8':### Jesus Walks on the Water
@@ -257,6 +268,7 @@ if a=='8':### Jesus Walks on the Water
               he became frightened, and beginning to sink, he cried out, “Lord, save me!” Jesus immediately reached out his
               hand and caught him, saying to him, “You of little faith, why did you doubt?” When they got into the boat, the 
              wind ceased. And those in the boat worshiped him, saying, “Truly you are the Son of God.  '''
+    summary.lower()
     keywords = list(map(str, summary.split()))
 
 if a=='9':### Jesus healing the Blind
@@ -270,8 +282,9 @@ if a=='9':### Jesus healing the Blind
               were saying, “No, but it is someone like him.” He kept saying, “I am the man.” But they kept asking him, “Then how were
               your eyes opened?” He answered, “The man called Jesus made mud, spread it on my eyes, and said to me, ‘Go to Siloam and 
              wash.’ Then I went and washed and received my sight.” They said to him, “Where is he?” He said, “I do not know. '''
+    summary.lower()
     keywords = list(map(str, summary.split()))
-    
+
 def scores(keywords, answer):
     scoreFunc = 0
     already = []
@@ -284,17 +297,12 @@ def scores(keywords, answer):
                 scoreFunc+=1
     percent = (scoreFunc/len(keywords))*100
     #print(percent)
-    print(percent)
-    if (percent < 30):
-        percent *= 2.75
-       # print(30)
-    elif (percent > 30 and percent < 60):
-        #print(60)
-        percent*=2.5
-    elif (percent > 70):
-        #print(70)
-        percent*=1.3
-    
+    if len(answer) > 10:
+        print(percent)
+        percent *= 1.75
+    elif len(answer) <= 10:
+        percent*=2.8
+        
     print(percent)
     #percent = round(percent*100)
     #print(percent)
@@ -307,7 +315,7 @@ def scores(keywords, answer):
 percentPlayer1 = scores(keywords, player1)
 percentPlayer2 = scores(keywords, player2)
 
-#print(percentPlayer1)
+    #print(percentPlayer1)
 #print(percentPlayer2)
 
 
