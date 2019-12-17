@@ -299,9 +299,9 @@ def scores(keywords, answer):
     #print(percent)
     if len(answer) > 10:
         print(percent)
-        percent *= 1.75
+        percent *= 1.5
     elif len(answer) <= 10:
-        percent*=2.8
+        percent*=1.5
         
     print(percent)
     #percent = round(percent*100)
