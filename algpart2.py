@@ -269,8 +269,8 @@ if a=='9':### Jesus healing the Blind
               were saying, “No, but it is someone like him.” He kept saying, “I am the man.” But they kept asking him, “Then how were
               your eyes opened?” He answered, “The man called Jesus made mud, spread it on my eyes, and said to me, ‘Go to Siloam and 
              wash.’ Then I went and washed and received my sight.” They said to him, “Where is he?” He said, “I do not know. '''
-
-
+    keywords = list(map(str, summary.split()))
+    
 def scores(keywords, answer):
     scoreFunc = 0
     already = []
