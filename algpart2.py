@@ -1,4 +1,5 @@
 
+
 output = open('output.txt', "r")
 a=(output.readline())
 
@@ -283,11 +284,21 @@ def scores(keywords, answer):
                 scoreFunc+=1
     percent = (scoreFunc/len(keywords))*100
     #print(percent)
-    percent *= 2.75
-    #print(percent)
+    print(percent)
+    if (percent < 30):
+        percent *= 2.75
+       # print(30)
+    elif (percent > 30 and percent < 60):
+        #print(60)
+        percent*=2.5
+    elif (percent > 70):
+        #print(70)
+        percent*=1.3
+    
+    print(percent)
     #percent = round(percent*100)
     #print(percent)
-
+    #print(percent)
     if percent >= 100:
         percent = 99
     return str(round(percent))

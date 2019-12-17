@@ -3,7 +3,7 @@ var yScreen = 600
 var connectionStatus = false;
 var connectionStatus2 = false;
 var socket;
-var timeAnswer = 10000;
+var timeAnswer = 3700;
 var countDown = timeAnswer;
 var timer = 0;
 var biblePassages = ["Feeding the Five Thousand", "Wedding at Cana", "The Lost Sheep", "Resuretion of Jesus", "Noah's Arc", "Crucifixion/Death of Jesus", "Jonah Tries Running Away from God", "Six Days of Creation", "Jesus Walks on Water", "Jesus Heals the Blind"]
