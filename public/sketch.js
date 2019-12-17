@@ -174,7 +174,7 @@ countDown--
   } else {
    // background(255)
     loadingG.show()
-    loadingG.position(290, 250)
+    loadingG.position(500, 220)
     loadingResults.resize(xScreen, yScreen)
     image(loadingResults, 0, 0)
     
