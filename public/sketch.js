@@ -6,12 +6,12 @@ var socket;
 var timeAnswer = 3700;
 var countDown = timeAnswer;
 var timer = 0;
-var biblePassages = ["Feeding the Five Thousand", "Wedding at Cana", "The Lost Sheep", "Resuretion of Jesus", "Noah's Arc", "Crucifixion/Death of Jesus", "Jonah Tries Running Away from God", "Six Days of Creation", "Jesus Walks on Water", "Jesus Heals the Blind"]
+var biblePassages = ["Feeding the Five Thousand", "Wedding at Cana", "The Lost Sheep", "Resuretion of Jesus", "Noah's Arc", "Crucifixion/Death of Jesus", "Jonah Run's Away from God", "Six Days of Creation", "Jesus Walks on Water", "Jesus Heals the Blind"]
 var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT ='http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/'// 
+var connectionPORT ='https://bibleanalysis.herokuapp.com/'//'http://localhost:3000/' // 
 var scoringScrn = false;
 var mainScores = {
   player1:0,
