@@ -83,7 +83,9 @@ io.on('connection', (socket) => {
 		socket.on('requestAssign',()=>{
 			scores = {
 				player1: 0,
-				player2: 0
+				player2: 0,
+				player1percent: 0,
+				player2percent: 0
 			}
 			if (first){
 				clientAns = "Player 1"
