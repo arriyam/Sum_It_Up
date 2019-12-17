@@ -43,6 +43,7 @@
        color:  black;
        
     }
+    
     /*.parallax {
         perspective: 1px;
         height: 100vh;
@@ -73,7 +74,7 @@
 <body>
    
     <div style="width:300px; margin:auto; position:relative;">
-        <audio autoplay loop controls>
+        <audio autoplay="true" loop controls>
             <source src="Ticker.wav" type="audio/wav" />
         </audio>
         </div>
@@ -87,15 +88,18 @@
                 <h2>Maxime Michet, Om Kapadia, and Thushen Mohanarajah</h2>
                 
                 <div class="w3-padding-32">
-                    <div class="w3-bar w3-border">
-                        <a href="https://bibleanalysis.herokuapp.com/play.html" class="w3-bar-item w3-large w3-button w3-white w3-hover-text-blue">Play</a>
-                        <a href="howToPlay.html" class="w3-bar-item w3-large w3-button w3-white w3-hover-text-blue">How To Play</a>
-                        <a href="about.html" class="w3-bar-item w3-large w3-button w3-white w3-hover-text-blue">Credits</a>
-                        <a href="contact.html" class="w3-bar-item w3-large w3-button w3-white w3-hover-text-blue">Contact Us</a>
-                        
+                    <div class="w3-bar w3-border">            
+                        <a href="index.html" class="w3-bar-item w3-large w3-button w3-light-grey w3-hover-text-blue">Home</a>
+                        <a href="howToPlay.html" class="w3-bar-item w3-large w3-button w3-light-grey w3-hover-text-blue">How To Play</a>
+                        <a href="about.html" class="w3-bar-item w3-large w3-button w3-light-grey w3-hover-text-blue">Credits</a>
+                        <a href="contact.html" class="w3-bar-item w3-large w3-button w3-hide-small w3-light-grey w3-hover-text-blue">Contact Us</a>
+    
                     </div>
                 </div>
 
+
+                <a href="https://bibleanalysis.herokuapp.com/play.html" class="w3-bar-item w3-large w3-button w3-white w3-hover-text-blue">Play</a>
+              
                 <div class="row">
                     <div class="column">
                         <img src="images/quote1.png" alt="Light" style="width:75%" />

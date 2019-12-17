@@ -1,16 +1,3 @@
-function assignPlayers() {
-  // socket.on('clientAnswer', (clientAns) => {
-  //   console.log('inanswerclient')
-  //   //clientAlreadyAssigned = clientAns
-  // })
-  // if (clientAlreadyAssigned) {
-  //   activePlaye='Player 2'
-  // } else {
-  //   activePlayer='Player 1'
-  //   //socket.emit('activePlayerEmit', '')
-
-  // }
-}
 
 
 function load() {
@@ -47,23 +34,8 @@ function replyConnection(connectionStatusComfirm) {
 function waitingConnection() {
   waitingPlayerIMG.resize(xScreen, yScreen)
   image(waitingPlayerIMG, 0, 0);
-  if (!clientAlreadyAssigned){
-    console.log('request')
-  socket.emit('requestAssign', "")
-  socket.on('assignPlayer', (player)=>{
-    activePlayer=player
-    
-  })
-  clientAlreadyAssigned=true;
-}
-  console.log(activePlayer)
-  // Displays the image at point (0, height/2) at half size
- //image(waitingPlayerIMG, 0, height / 2, waitingPlayerIMG.width / 2, waitingPlayerIMG.height / 2);
-  //background(0, 100, 0);
-  //text("Waiting other player. TEST", 100, 100)
-  //console.log('you are player 1')
-}
 
+}
 
 
 //Display Functions:
@@ -212,10 +184,23 @@ function scoringScreen() {
 }
 
 function gameOver() {
+    a.style('position', 'absolute')
+    a.style('top', '70%')
+    a.style('left', '45%')
+    a.style('color', '#fff !important')
+    a.style('background-color', '#60a3bc')
+    a.style('text-transform', 'uppercase')
+    a.style('transition', 'all 0.4s ease 0s;')
+    a.style('padding', '20px')
+    a.style('border-radius', '50px')
+    a.style('border', 'none')
+    a.style('display', 'inline-block')
+
   background(100, 0, 100)
   textSize(40)
   textStyle(BOLD);
   if (mainScores.player1 > mainScores.player2) {
+
     gameOverP1Img.resize(xScreen, yScreen)
     image(gameOverP1Img, 0, 0)
     text(mainScores.player1, 120, 390)

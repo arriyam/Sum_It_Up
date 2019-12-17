@@ -6,12 +6,12 @@ var socket;
 var timeAnswer = 10000;
 var countDown = timeAnswer;
 var timer = 0;
-var biblePassages = ["Feeding the Five Thousand", "Wedding at Cana", "The Lost Sheep", "4", "5", "6", "7", "8"]
+var biblePassages = ["Feeding the Five Thousand", "Wedding at Cana", "The Lost Sheep", "Resuretion of Jesus", "Noah's Arc", "Crucifixion/Death of Jesus", "Jonah Tries Running Away from God", "Six Days of Creation", "Jesus Walks on Water", "Jesus Heals the Blind"]
 var selectedPassage = false;
 var passage;
 var selected = false;
 var answered = false;
-var connectionPORT = 'https://bibleanalysis.herokuapp.com/'//'http://localhost:3000/' //
+var connectionPORT = 'http://localhost:3000/' //'https://bibleanalysis.herokuapp.com/'//
 var scoringScrn = false;
 var mainScores = {
   player1:0,
@@ -33,7 +33,7 @@ var loadingS=false;
 var roundNum=1;
 var increment=false;
 
-function setup() {  
+function setup() { 
   createCanvas(xScreen, yScreen)
   background(0, 100, 200);
   socket = io.connect(connectionPORT) //
@@ -54,7 +54,8 @@ function setup() {
   gameOverTieImg = loadImage('images/GameOverTie.png')
   loadingResults = loadImage('images/LoadingResults.png')
   getReadyImg = loadImage('images/GetReady.png')
-
+  a = createA('index.html', 'Back to Main Menu');
+  a.hide()
 
 
   // loadingGIFimport = loadImage('images/loading.gif')
@@ -63,8 +64,23 @@ function setup() {
   player = ""
 
 }
+alreadyAssigned=false;
+runReq = true;
 
 function draw() {
+  if (!alreadyAssigned) {
+  console.log('why are u running?')
+  alreadyAssigned=true;
+  socket.emit('requestAssign')
+  
+  socket.on('clientAnswer', (clientAns) => {
+    if (runReq) {
+    runReq = false 
+    activePlayer = clientAns; 
+    }
+  })
+
+}
   loadingG.hide()
   load();
   if (!loadingS) {
@@ -101,6 +117,8 @@ function draw() {
         introTimer++;
         getReadyImg.resize(xScreen, yScreen)
         image(getReadyImg, 0, 0)
+        textSize(30)
+        //text(("You are " + activePlayer), 200, 400)
        // background(100, 100, 150)
         //clientAlreadyAssigned = false;
         
@@ -174,7 +192,7 @@ countDown--
   } else {
    // background(255)
     loadingG.show()
-    loadingG.position(500, 220)
+    loadingG.position(605, 250)
     loadingResults.resize(xScreen, yScreen)
     image(loadingResults, 0, 0)
     

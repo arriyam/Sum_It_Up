@@ -53,6 +53,8 @@ var player = "Player 1"
 var assigned1 = false;
 //P5-------------------------------------
 io.on('connection', (socket) => {
+	clientAns = ""
+	
 	scores = {
 		player1: 0,
 		player2: 0
@@ -64,25 +66,27 @@ io.on('connection', (socket) => {
 	//io.emit('assignPlayer', player)
 	//player = "Player 2"
 	
-	socket.on('requestAssign', ()=>{
-		scores = {
-			player1: 0,
-			player2: 0
-		}
-		if (assigned1 == false) {
-		player = "Player 1"
-		assigned1 = true;
-		io.emit('assignPlayer', player)
-		} else {
-			player = "Player 2"
-			//console.log('player 2')
-			io.emit('assignPlayer', player)	
-		}
-	})
+	// socket.on('requestAssign', ()=>{
+	// 	scores = {
+	// 		player1: 0,
+	// 		player2: 0
+	// 	}
+	// 	if (assigned1 == false) {
+	// 	player = "Player 1"
+	// 	assigned1 = true;
+	// 	io.emit('assignPlayer', player)
+	// 	} else {
+	// 		player = "Player 2"
+	// 		//console.log('player 2')
+	// 		io.emit('assignPlayer', player)	
+	// 	}
+	// })
 
 	// console.log("new Con: " + socket.id)
 	//Waits for a new connection
 	if (io.engine.clientsCount > coLimit) { //checks if there are more then 2 client connections
+		first = true;
+		clientAns=""	
 		socket.emit('err', {message: 'reach the limit of connections'})
 		socket.disconnect() //if more then 3 --> disconnects
 		console.log('Disconnected')
@@ -96,10 +100,13 @@ io.on('connection', (socket) => {
 		//console.log('Number of connections: ' + io.engine.clientsCount);
 		//console.log(connectState)
 		socket.broadcast.emit('newConnection', connectState);
+	//first = true;
+		//clientAns=""
 		scores = {
 			player1: 0,
 			player2: 0
 		}
+		
 		player1IN = undefined;
 		player2IN = undefined;
 		submitted = false;
@@ -109,8 +116,8 @@ io.on('connection', (socket) => {
             clientID.shift();
 		}
 	
-		player = "Player 2"
-		io.emit('assignPlayer', player)
+		//player = "Player 2"
+		//io.emit('assignPlayer', player)
 		socket.on('requestAssign',()=>{
 			scores = {
 				player1: 0,
@@ -118,12 +125,14 @@ io.on('connection', (socket) => {
 			}
 			if (first){
 				clientAns = "Player 1"
+				console.log('in')
 				first = false;
 			} else {
 				clientAns = "Player 2"
+				console.log('in2')
 			}
 			//clientAns=true;
-			//io.emit("clientAnswer", clientAns)
+			io.emit("clientAnswer", clientAns)
 			//console.log('requestAssign: ' + clientAns)
 		})
 		socket.on('comfirmCo', (connectionStatus) => {
@@ -133,8 +142,8 @@ io.on('connection', (socket) => {
 			}
 			let connectionStatusComfirm = connectionStatus; //sets value to another variable
 			socket.broadcast.emit('startGame', connectionStatusComfirm); //sends back the cofirmation
-			player = "Player 2"
-			io.emit('assignPlayer', player)
+			// player = "Player 2"
+			// io.emit('assignPlayer', player)
 			points1 = 0
 			points2 = 0
 			//io.emit('playerState', playerState);
@@ -152,7 +161,7 @@ io.on('connection', (socket) => {
 			//console.log("___________________")
 			while (find) {
 			console.log(alreadyChosed)
-			passageChosed = getRandomInt(3);
+			passageChosed = getRandomInt(10);
 			console.log('if' + alreadyChosed.includes(passageChosed))
 			if (alreadyChosed.includes(passageChosed)) {
 				find = true;
@@ -292,6 +301,8 @@ function getRandomInt(max) {
   }
   
 function checkWinner(player1OUT, player2OUT) {
+	first = true;
+	assigned1 = false;
 	if (player1OUT > player2OUT) {
 		//console.log("1 point")
 		points1++;
